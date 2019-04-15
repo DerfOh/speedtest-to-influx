@@ -1,12 +1,18 @@
 # About
-This project is a simple speed test docker container using the speedtest-cli python tool that writes to influxdb, created this in an effort to keep an eye the service provided by my ISP.
+This project is a simple speed test docker container. It works by using the [speedtest-cli](https://github.com/sivel/speedtest-cli) python tool the script writes data to a file and pushes it to influxdb. I created this in an effort to keep an eye the service provided by my ISP.
 
 # Usage
+
+First clone and CD into the repository
+```
+git clone https://github.com/DerfOh/speedtest-to-influx.git
+cd speedtest-to-influx
+```
 
 Write a `.env` file like the following which defines your influx database connection and hostname information
 ```
 # Host tag in influx
-HOSTNAME=macbook
+HOSTNAME=my_speedtest_host
 
 # The URL and port used to connect to influx
 INFLUX_URL=127.0.0.1:8086
@@ -21,10 +27,26 @@ If the user you have defined does not have administrative credentials on the inf
 CREATE DATABASE speedtest
 ```
 
+## Docker
+
 Then build and run the docker container
+```
+docker build . -t speedtest
+docker run --name speedtest -it --env-file ./.env speedtest
+```
+
+Clean up
 ```
 docker rm -f speedtest
 docker rmi speedtest
-docker build . -t speedtest
-docker run --name speedtest -it --env-file ./.env speedtest
+```
+
+## Python
+
+First follow the install instructions at https://github.com/sivel/speedtest-cli
+
+Then run the following
+```
+source .env
+./script.sh
 ```
