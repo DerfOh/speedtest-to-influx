@@ -1,5 +1,5 @@
 # About
-This project is a simple speed test docker container. It works by using the [speedtest-cli](https://github.com/sivel/speedtest-cli) python tool the script writes data to a file and pushes it to influxdb. I created this in an effort to keep an eye the service provided by my ISP.
+This project is a simple service that performs a speedtest and sends the data off the host to influx. It works by using the [speedtest-cli](https://github.com/sivel/speedtest-cli) python tool the script writes data to a file and pushes it to influxdb. I created this in an effort to keep an eye the service provided by my ISP.
 
 # Usage
 
